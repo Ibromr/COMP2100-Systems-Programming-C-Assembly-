@@ -1,0 +1,109 @@
+Answer the following questions
+a. What is the C type of the value passed in %rdi? It is a pointer to................char
+
+
+b. Convert each of the following memory address expressions to a pseudo-C array
+reference expression relative to the pointer rdi. The first one has been done for you.
+Note: You may need to convert hexadecimal to decimal.
+
+
+Assembly Expression         C equivalent
+(%rdi)                         rdi[0]
+0x2(%rdi)
+0x23(%rdi) 
+
+
+
+
+
+
+
+
+
+
+
+
+2. Convert the following for logop to a goto representation.
+
+            for (j = 0; j < 8; j++)
+                a[j]++;
+
+int j = 0
+int a = 
+
+
+assume a = %rdi 
+assume j = %rbx
+assume j is a C int.
+
+   
+psuedo-C
+
+        j= 0;
+        if (! (j < 8>)) goto done
+    start:
+        a[j]++;
+        j++;
+        if (j < 8 )  goto start
+    done:
+
+
+
+Assembly 
+
+    mov_ $0, %rbx
+    cmp_ $8, %rbx
+    jge     done
+
+loop:
+    addb    $1, (%rdi, %rbx, 1)
+    addb    $1, %rbx
+    cmp_    $8, %rbx
+    jl      loop
+done:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical Exercises
+1. Multiplication by a constant in machine code
+
+
+
+
+K    Instructions                   Explanation
+1    movq %rdi, %rax .              The result of multiplication by 1 is the input
+                                    value passed in %rdi so move it to %rax
+                        
+2    leaq (%rdi,%rdi), %rax         Multiply by 2 using leaq to add %rdi to itself and
+                                    store result in %rax.
+
+3    leaq (%rdi,%rdi,2), %rax       Use leaq to add %rdi to %rdi multiplied by 2 and
+                                    store in %rax
+            
+4    leaq 0(,%rdi,4),%rax           Multiply %rdi's value by 4, add 0, store in %rax
+
+5    leaq (%rdi,%rdi,4),%rax        Multiply (the right) %rdi's value by 4, add (the left) %rdi onto it,  the store it in %rax
+
+6    leaq (%rdi,%rdi,2), %rax       Multiply %rdi by 3 into %rax using leaq, then
+     addq %rax, %rax                double %rax by adding it to itself
+
+7    leaq 0(,%rdi,8), %rax          Multiply %rdi's value by 8, add 0, store in %rax
+     subq %rdi, %rax                subtract %rdi from %rax once, store in %rax
+.
+.
+.
+.
+
+12   leaq (%rdi,%rdi,2), %rax       Multiply (the right) %rdi's value by 2, add (the left) %rdi onto it,  the store it in %rax
+     salq $2, %rax                  Move all bits in %rax two pisitions to the left quadrupling its value. 

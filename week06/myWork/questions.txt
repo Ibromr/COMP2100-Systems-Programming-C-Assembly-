@@ -1,0 +1,10 @@
+
+
+1- Memory allocating
+
+char str[] = "Hello";  // static allocating difference? 
+
+
+2- is  "Show bit pattern of 127" asking binary representation?
+
+

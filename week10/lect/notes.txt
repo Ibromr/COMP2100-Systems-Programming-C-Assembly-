@@ -1,0 +1,28 @@
+
+
+why people stop c to check out of array string so not have overflow issue?
+
+
+
+Array Access (2)
+
+To access the i ’th index element of an array A of type T:
+• A[i] = *(A + sizeof(T)*i)
+
+If A is an array of longs, and address of A is stored in register
+
+%rdx, and i is stored in register %rcx, then
+• movq (%rdx,%rcx,8), %rax
+
+
+
+How a image size calculated in computer?
+
+While more is better, remember that these bits add up. 
+Consider 8-bit color depth. Each pixel requires 8 × 3 = 24 bits to represent its value.
+
+Since each pixel requires 24 bits, 
+and there are 1920 pixels per line and there are 1080 lines in one frame of video, 
+this means that your hard-working flat-panel TV is showing you information that is 
+24 × 1920 × 1080 = 49,766,400 bits in each frame. Approximately 50 million bits; 
+also referred to as 50 Mbits.

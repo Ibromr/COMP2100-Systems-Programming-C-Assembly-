@@ -1,0 +1,212 @@
+short cuts in assignment
+
+* i - inspect
+i b - inspect breakpoints
+i r - inspect register
+i r <register name>
+
+* b - break/breakpoint 
+b <function name>
+b *<function name>+<offset>
+e.g.  b *main+34
+
+c - continue
+
+* x - examine
+x/<format> <memory addr>
+formats:
+- s - string
+- c - char 
+- d - decimal
+
+x/c $rdi+5
+stepi    which can be abbreviated to    si - step instruction
+disass - disassemble
+
+
+
+
+You can tell gdb to always show you the next instruction to be executed by using
+the following command.
+                            (gdb) display/i $pc
+This command instructs gdb to print the instruction at the program counter
+whenever execution is paused.
+
+
+CCCCCCCC\x1f\x15\x40\x00\x00\x00\x00\x00
+
+flags: https://www.ic.unicamp.br/~celio/mc404-2006/flags.html
+
+break bombphase_1
+break detonate_bomb_now
+break bombphase_2
+break bombphase_3
+break bombphase_4
+break bombphase_5
+
+0x76 118 v   [10]
+
+bombphase_1 = d(q;Mwertyvuiopasf0A0ghjklzxcvbnqwK
+
+
+69 74 61 72 65 6e 65 67,%rax
+itareneg
+
+6e 6f, 0x8(%rsp)
+n  o
+ 
+bombphase_2 = generationqwertyuiopas            
+
+
+
+rcx = 0        
+rdx = 0      
+
+xor    $0xfffffffffffffe8a,%rcx
+      
+rcx = FFFFFFFFFFFFFE8A    -374
+
+add    $0x195,%rdx
+
+rcx = 0x195    405 
+
+xor    %rdx,%rcx  ?
+
+rcx = FFFFFFFFFFFFFF1F  -225
+
+r8 = 1      1
+    
+    r8 == rcx   
+
+bombphase_3 = %rsi = 0  %rdx = 0   %rcx = -245  %r8 = 20
+                        
+                                         
+bombphase_4 = qwertyuiopasdfghjklzxcvbnml$@Z>e
+
+rdx            0x0      0
+
+0x00000000004016e9 <+46>:    movl   $0x19003fc6,0x50(%rsp)
+(gdb) x/x 0x50+$rsp
+0x7fffffffdbc0: 0x19003fc6
+
+0x00000000004016f1 <+54>:    movzwl 0x4c(%rsp),%eax
+(gdb) x/x 0x4c+$rsp
+0x7fffffffdbbc: 0x410f0ee6
+
+
+0x0000000000401709 <+78>:    movzwl 0x4a(%rsp),%edx
+(gdb) x/x 0x4a+$rsp
+0x7fffffffdbba: 0x6c
+(gdb) x/c 0x4a+$rsp
+0x7fffffffdbba: 108 'l'
+
+rdx            0x246c   9324
+(gdb) x/x $edx
+0x246c: Cannot access memory at address 0x246c
+
+0x0000000000401713 <+88>:    cmp    $0x246c,%dx
+(gdb) p/c 0x246c
+$2 = 108 'l'
+(gdb) p/c 0x24
+$3 = 36 '$'
+
+0x0000000000401718 <+93>:    je     0x401726 <bombphase_4+107>
+0x000000000040171a <+95>:    callq  0x401e06 <detonate_bomb_now>
+
+
+0x0000000000401726 <+107>:   mov    0x58(%rsp),%rdx
+0x000000000040172b <+112>:   test   %rdx,%rdx
+(gdb) x/x 0x58+$rsp
+0x7fffffffdbc8: 0x00
+
+(gdb) x/x 0x58+$rsp
+0x7fffffffdbc8: 0x00
+(gdb) x/x 0x57+$rsp
+0x7fffffffdbc7: 0x6d
+(gdb) x/x 0x56+$rsp
+0x7fffffffdbc6: 0x4f
+(gdb) x/x 0x55+$rsp
+0x7fffffffdbc5: 0x20
+(gdb) x/x 0x54+$rsp
+0x7fffffffdbc4: 0x6d
+(gdb) x/x 0x53+$rsp
+0x7fffffffdbc3: 0x19
+(gdb) x/x 0x52+$rsp
+0x7fffffffdbc2: 0x00
+
+rdx            0x0      0
+
+0x000000000040172e <+115>:   je     0x40173c <bombphase_4+129>
+
+0x000000000040173c <+129>:   mov    0x60(%rsp),%edx
+
+rdx            0x4901b8da       1224849626
+
+(gdb) x/x 0x60+$rsp
+0x7fffffffdbd0: 0xda
+(gdb) x/s 0x60+$rsp
+0x7fffffffdbd0: "ڸ\001I8"
+(gdb) x/c 0x60+$rsp
+0x7fffffffdbd0: -38 '\332'
+
+0x0000000000401740 <+133>:   cmp    $0x4901b8da,%edx
+(gdb) x/s 0x4901b8da
+0x4901b8da:     <error: Cannot access memory at address 0x4901b8da>
+(gdb) p/s 0x4901b8da
+$4 = 1224849626
+(gdb) p/c 0x4901b8da
+$5 = -38 '\332'
+(gdb) p/c 0x4901b8
+$6 = -72 '\270'
+(gdb) p/c 0x4901
+$7 = 1 '\001'
+(gdb) p/c 0x49
+$8 = 73 'I'
+
+0x0000000000401746 <+139>:   je     0x401754 <bombphase_4+153>
+
+0x0000000000401754 <+153>:   movzbl 0x4e(%rsp),%edx
+
+rdx            0x3e     62
+(gdb) p/c $edx
+$9 = 62 '>'
+(gdb) p/x $edx
+$10 = 0x3e
+
+
+0x0000000000401759 <+158>:   cmp    $0x3e,%dl
+
+rcx            0x5a40   23104
+(gdb) x/s 0x4c+$rsp
+0x7fffffffdbbc: "@Z>"
+
+0x000000000040176f <+180>:   mov    0x50(%rsp),%edx
+rdx            0x19003fc6       419446726
+
+(gdb) x/x 0x50+$rsp
+0x7fffffffdbc0: 0xc6
+
+(gdb)  p/x $edx
+$11 = 0x19003fc6
+
+0x0000000000401773 <+184>:   shr    $0x6,%edx
+(gdb)  p/x $edx
+$12 = 0x6400ff
+
+0x0000000000401776 <+187>:   not    %edx
+(gdb)  p/x $edx
+$13 = 0xff9bff00
+
+0x0000000000401778 <+189>:   movswl %cx,%ecx
+(gdb) p/x $ecx
+$4 = 0x5a42
+
+0x000000000040177b <+192>:   and    %ecx,%edx
+(gdb) p/x $ecx
+$5 = 0x5a42
+(gdb) p/x $edx
+$6 = 0x5a00
+
+
+
+bombphase_5 = asdfghjz

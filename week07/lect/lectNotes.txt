@@ -1,0 +1,35 @@
+
+Set break points to not calling server thata you wont lose mark from bomb
+
+
+Software 
+    intro
+    conditional exet branches
+    procedure calls
+Memory data meets the hardware 
+    Arrays...
+System
+
+
+x86 Aseebmly language (Intel)
+
+What x86 assembly look like
+diff; 
+    movq    %rdi, %rax
+    subq    %rsi, %rax
+    ret
+
+
+Moving(Copying) data
+movq    Source, Dest;
+    "Move quadword" (quadword is 64 bits)
+
+Operand Types
+
+
+main memory is RAM or harddisk? 
+
+
+he left at page 56 in lecture notes
+
+

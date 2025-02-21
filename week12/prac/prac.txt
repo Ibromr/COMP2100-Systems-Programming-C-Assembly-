@@ -1,0 +1,128 @@
+Week12 practical
+
+Memory Hierarchy and Cache  
+
+The first priority in tutorials is your questions. Come with relevant questions to help you better
+understand the lectures and readings.
+
+`Questions Not from the Textbook
+
+1. Identify examples of temporal and spatial locality in the following program code. Consider
+both variables and the program code.
+    
+    char str[] = "My string";
+    char *p;
+    int count = 0;
+    for (p = str; *p; p++)
+        if (*p >= 'a' && *p <= 'z')
+            count++;
+
+Ans: 
+    Data spatial locality:
+        - The contents of str
+
+        The below just live in registers
+        - The pointer address of p
+        - The value of count
+        
+    Instruction spatial locality:
+        - for loop instructions
+
+    Data temporal locality:
+        - p
+        - count
+        - The contents of str
+    
+
+    Instruction temporal locality:
+        - for loop instructions
+
+
+2. Consider the following program module which works with an array of int.
+    
+    int sum_2d (int a[N][N]) {
+        int r, c;
+        
+        for (c = 0; c < N; c++)
+            for (r = 0; r < N; r++)
+                sum += a[r][c];
+        return sum;
+    }
+
+
+a. What does the module do? Describe the computation at a high level.
+
+b. If N is defined as 4, what is the sequence of memory accesses performed on the
+array a? Show the byte addresses of each access if the array a starts at 0x1000.
+
+[0][0] : 0x1000
+[1][0] : 0x1000 + 4 * N = 0x1000 + 16
+                        = 0x1010
+[2][0] : 0x1000 + 8 * N = 0x1000 + 32
+                        = 0x1020  
+[3][0] : 0x1000 + 12 * N = 0x1000 + 48
+                        = 0x1030                        
+
+[0][1] : 0x1000 + 1 * N = 0x1001
+[1][1] : 0x1000 + 1 * N = 0x1014
+[2][1] : 0x1000 + 1 * N = 0x1024
+[3][1] : 0x1000 + 1 * N = 0x1034                        
+
+
+c. Suppose that the program is to be run on a CPU with a L1 cache that is 4KiB. How do
+you expect this program to perform with each of the following values of N?
+    
+    
+
+    N * N matrix 
+    eah value is 4 bytes (int)
+    4*4 = 16 values
+    16 * 4 bytes = 64 bytes
+
+    i. # define N 16
+
+    16*16
+    256 values 
+    256 * 4 = 1024 bytes 
+
+    ii. # define N 32
+
+    32*32
+    1024 values
+    1024 * 4 = 4096 (4KiB)
+    
+    iii. # define N 64
+
+    64*64
+    4096 values
+    4096 * 4 
+    16,384 bytes (16KiB)
+
+    iv. # define N 128
+    Explain your answers.
+
+d. Modify the program so that it has better locality and improved performance.
+
+
+3. Here is the declaration of array of structs:
+  
+    # define N 100;
+    struct item {
+    int vel;
+    int acc;
+    };
+    struct item cars[N];
+
+    And here are three functions, each of which is designed to set all the vel and acc fields to
+zero. Consider each of the functions and identify which function has the best locality, which
+has the second best and which is the worst. Explain.
+
+Quickest:
+
+void zero2(struct item *p, int n) {
+    int j;
+    for (j = 0; j < n; j++) {
+        p[j].vel = 0;
+        p[j].acc = 0;
+    }
+}

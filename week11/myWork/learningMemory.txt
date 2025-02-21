@@ -1,0 +1,20 @@
+
+Memory Layout of a C Program| With real Example | Linux
+
+Component of a program 
+
+1- Functions(Caller and Callee)
+2- Local Variables
+3- Global Variables
+4- Static Variables
+5- Dynamic memory allocation
+
+
+Stack always always grows from high memory to low memory
+
+
+check memory.pdf
+
+
+source: https://www.youtube.com/watch?v=ref1dU7Pfho
+
